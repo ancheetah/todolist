@@ -9,6 +9,7 @@ class ToDoList extends Component {
             items: []
         }
         this.addItem = this.addItem.bind(this);
+        this.removeItem = this.removeItem.bind(this);
     }
 
     addItem(item) {
@@ -21,6 +22,13 @@ class ToDoList extends Component {
             this.input.value = "";
         }
         item.preventDefault();
+    }
+
+    removeItem(key) {
+        let filteredItems = this.state.items.filter( item => item.key !== key );
+        this.setState({
+            items: filteredItems
+        });
     }
 
     render () {
@@ -39,7 +47,7 @@ class ToDoList extends Component {
                     </Row>
                 </Form>
                 <Col xs="12" sm="10" md="8" >
-                    <ToDoItems entries={this.state.items}/>
+                    <ToDoItems entries={this.state.items} delete={this.removeItem}/>
                 </Col>
             </Container>
         );
