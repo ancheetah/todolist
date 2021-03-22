@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import { Container, Col, Form, Input, Button } from 'reactstrap';
+import { Container, Row, Col, Form, Input, Button } from 'reactstrap';
 import ToDoItems from './ToDoItemsComponent';
 
 class ToDoList extends Component {
@@ -27,16 +27,20 @@ class ToDoList extends Component {
         return (
             <Container className="todoListMain">
                 <Form onSubmit={this.addItem}>
-                    <Col md={10}>
-                        {/* Set up an uncontrolled form for now with innerRef */}
-                        <Input type="text" placeholder="Enter a task"
-                                innerRef={ (userInput) => this.input = userInput }></Input>   
-                    </Col>
-                    <Col md={2}>
-                        <Button type="submit">Add</Button>
-                    </Col>
+                    <Row className="">
+                        <Col xs="12" sm="10" md="8" className="py-2">
+                            {/* Set up an uncontrolled form for now with innerRef */}
+                            <Input type="text" placeholder="Enter a task"
+                                    innerRef={ (userInput) => this.input = userInput }></Input>
+                        </Col>
+                        <Col className="d-flex justify-content-start py-2">
+                            <Button type="submit" color="primary">Add</Button>
+                        </Col>
+                    </Row>
                 </Form>
-                <ToDoItems entries={this.state.items}/>
+                <Col xs="12" sm="10" md="8" >
+                    <ToDoItems entries={this.state.items}/>
+                </Col>
             </Container>
         );
     }
