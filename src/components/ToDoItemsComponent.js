@@ -7,15 +7,19 @@ class ToDoItems extends Component {
     // }
 
     render() {
-        return (
-            <ListGroup>
-                <ListGroupItem>
-                    {this.props.entries.map( item => {
-                        return <li key={item.key}>{item.text}</li>
-                    })}
-                </ListGroupItem>
-            </ListGroup>
-        );
+        if (this.props.entries.length > 0) {
+            return (
+                <ListGroup>
+                    <ListGroupItem>
+                        {this.props.entries.map( item => {
+                            return <li key={item.key}>{item.text}</li>
+                        })}
+                    </ListGroupItem>
+                </ListGroup>
+            );
+        } else {
+            return <div></div>
+        }
     }
 };
 
