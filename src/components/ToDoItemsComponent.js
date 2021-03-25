@@ -6,7 +6,7 @@ const ToDoItems = (props) => {
                 <ul className="list-group">
                     {props.entries.map( item => {
                         return (
-                            <li key={item.key} className="list-group-item text-left list-unstyled bg-primary text-white">
+                            <li key={item.key} className="list-group-item text-left list-unstyled bg-primary text-white border-light">
                                 <div className="row px-2">
                                     <div className="col d-flex align-items-center">
                                         {item.text}
