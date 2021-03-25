@@ -6,7 +6,7 @@ class Main extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            input: "",
+            pendingItem: "",
             items: []
         }
         this.addItem = this.addItem.bind(this);
@@ -15,32 +15,33 @@ class Main extends Component {
     }
 
     handleChange(event) {
-        this.setState({ input: event.target.value });
+        this.setState({ pendingItem: event.target.value });
     }
 
     addItem(event) {
         event.preventDefault();
-        if (this.state.input) {
+        if (this.state.pendingItem) {
             let newItem = {
-                text: this.state.input,
+                text: this.state.pendingItem,
                 key: Date.now()
             };
-            this.setState({items: [...this.state.items, newItem]});
+            this.setState({
+                pendingItem: "",  // Clear input field for client after adding task
+                items: [...this.state.items, newItem]
+            });
         }
     }
 
     removeItem(key) {
         let filteredItems = this.state.items.filter( item => item.key !== key );
-        this.setState({
-            items: filteredItems
-        });
+        this.setState({ items: filteredItems });
     }
 
     render() {
         return (
             <div className="container">
-                <h2>To Do List</h2>
-                <ToDoForm addItem={this.addItem} userInput={this.state.input} handleChange={this.handleChange}/>
+                <h1 className="text-center">To Do List</h1>
+                <ToDoForm addItem={this.addItem} userInput={this.state.pendingItem} handleChange={this.handleChange}/>
                 <ToDoItems entries={this.state.items} delete={this.removeItem}/>
             </div>
         );

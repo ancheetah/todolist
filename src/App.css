@@ -1,4 +1,12 @@
-.App {
+body {
+  font-family: "Helvetica", sans-serif;
+}
+
+.item-button:hover {
+  color: thistle !important;
+}
+
+/* .App {
   text-align: center;
 }
 
@@ -35,4 +43,4 @@
   to {
     transform: rotate(360deg);
   }
-}
+} */
