@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import ToDoForm from './ToDoFormComponent';
 import ToDoItems from './ToDoItemsComponent';
+import { Container } from 'react-bootstrap';
 
 class Main extends Component {
     constructor(props) {
@@ -39,11 +40,11 @@ class Main extends Component {
 
     render() {
         return (
-            <div className="container">
+            <Container>
                 <h1 className="text-center">To Do List</h1>
                 <ToDoForm addItem={this.addItem} userInput={this.state.pendingItem} handleChange={this.handleChange}/>
                 <ToDoItems entries={this.state.items} delete={this.removeItem}/>
-            </div>
+            </Container>
         );
     }
 }

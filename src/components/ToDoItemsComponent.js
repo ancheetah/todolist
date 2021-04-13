@@ -1,26 +1,27 @@
 import React from 'react';
+import { ListGroup, Row, Col, Button } from 'react-bootstrap';
 
 const ToDoItems = (props) => {
         if (props.entries.length > 0) {
             return (
-                <ul className="list-group">
+                <ListGroup>
                     {props.entries.map( item => {
                         return (
-                            <li key={item.key} className="list-group-item text-left list-unstyled bg-primary text-white border-light">
-                                <div className="row px-2">
-                                    <div className="col d-flex align-items-center">
+                            <ListGroup.Item key={item.key} className="text-left list-unstyled bg-primary text-white border-light">
+                                <Row className="px-2">
+                                    <Col className="d-flex align-items-center">
                                         {item.text}
-                                    </div>
-                                    <div className="col-xs-1">
-                                        <button type="button" className="item-button btn btn-outline-light border-0">
+                                    </Col>
+                                    <Col xs={1}>
+                                        <Button type="button" variant="outline-light" className="item-button border-0">
                                             <i className="fa fa-lg fa-times" onClick={ () => props.delete(item.key)}></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </li>
+                                        </Button>
+                                    </Col>
+                                </Row>
+                            </ListGroup.Item>
                         );
                     })}
-                </ul>
+                </ListGroup>
             );
         } else {
             return <div></div>
