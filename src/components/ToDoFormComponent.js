@@ -5,10 +5,10 @@ const ToDoForm = (props) => {
     return (
         <Form onSubmit={props.addItem}>
             <InputGroup className="my-3">
-                <Form.Control type="text" placeholder="Enter a task" 
+                <Form.Control type="text" placeholder="Enter a task" className="border-primary"
                     value={props.userInput} onChange={props.handleChange}/>
                 <InputGroup.Append>
-                    <Button variant="outline-secondary" type="submit">
+                    <Button variant="primary text-white" type="submit">
                         <i className="fa fa-plus"></i>
                     </Button>
                 </InputGroup.Append>
