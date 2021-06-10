@@ -3,7 +3,7 @@ import { Form, InputGroup, Button } from 'react-bootstrap';
 
 const ToDoForm = (props) => {
     return (
-        <Form onSubmit={props.addItem}>
+        <Form onSubmit={props.addTask}>
             <InputGroup className="my-3">
                 <Form.Control type="text" placeholder="Enter a task" className="border-primary"
                     value={props.userInput} onChange={props.handleChange}/>
