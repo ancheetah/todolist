@@ -1,19 +1,22 @@
-import React, {Component} from "react";
+import React, {Component, useState, useEffect} from "react";
 import ToDoForm from './ToDoFormComponent';
 import ToDoItems from './ToDoItemsComponent';
 import { Container, Row, Col } from 'react-bootstrap';
 
-class Main extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            pendingItem: "",
-            items: []
-        }
-        this.addItem = this.addItem.bind(this);
-        this.removeItem = this.removeItem.bind(this);
-        this.handleChange = this.handleChange.bind(this);
-    }
+// class Main extends Component {
+//     constructor(props) {
+//         super(props);
+//         this.state = {
+//             pendingItem: "",
+//             items: []
+//         }
+//         this.addItem = this.addItem.bind(this);
+//         this.removeItem = this.removeItem.bind(this);
+//         this.handleChange = this.handleChange.bind(this);
+//     }
+function Main() {
+
+    const [userInput, updateInput] = useState([]);
 
     handleChange(event) {
         this.setState({ pendingItem: event.target.value });
@@ -38,7 +41,6 @@ class Main extends Component {
         this.setState({ items: filteredItems });
     }
 
-    render() {
         return (
             <Container fluid className="main-wrapper">
                 <Row>
@@ -50,7 +52,6 @@ class Main extends Component {
                 </Row>
             </Container>
         );
-    }
 }
 
 export default Main;
