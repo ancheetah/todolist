@@ -35,7 +35,7 @@ function Main() {
                 <Col xs={10} md={6} className="content-wrapper mx-auto bg-light">
                     <h1 className="text-center">To Do List</h1>
                     <ToDoForm addTask={addTask} userInput={pendingItem} handleChange={handleChange}/>
-                    <ToDoItems entries={tasks} delete={removeTask}/>
+                    <ToDoItems entries={tasks} delete={removeTask} updateTasks={setTasks}/>
                 </Col>
             </Row>
         </Container>
