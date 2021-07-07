@@ -37,28 +37,21 @@ function Main() {
 
     const toggle = () => setShow(!show);
 
-    const handleEditClick = (key) => {
-        let promise = new Promise((resolve, reject) => {
-            setItemToEdit(tasks.find( item => item.key === key));
-            // setPendingEdit(itemToEdit.text);
-            if (pendingEdit) {
-                resolve("done");
-            }
-        })
-        promise.then(
-            result => console.log(result, pendingEdit)
-        )
-        .then(
-            result => toggle()
-        )
+    const handleEditClick = (item) => {
+        setItemToEdit(item);
+        toggle();
     };
-
-    useEffect( () => {
-        setPendingEdit(itemToEdit.text);
-    }, [itemToEdit])
 
     const editTask = (event) => {
         event.preventDefault();
+        setTasks(
+            tasks.map( task => {
+                if (task.key === itemToEdit.key) {
+                    return {text: pendingEdit, key: task.key};
+                }
+                return task;
+            })
+        );
         toggle();
     }
 
@@ -74,18 +67,23 @@ function Main() {
             <Modal show={show}>
                 <Form onSubmit={editTask}>
                     <Modal.Body>
-                            <Form.Group controlId="formEditTask">
-                                <Form.Label>Edit Task Name</Form.Label>
-                                <Form.Control type="text" value={pendingEdit} onChange={event => setPendingEdit(event.target.value)}/>
-                            </Form.Group>
-                            <p>{pendingEdit}</p>
+                        <Form.Group controlId="formEditTask">
+                            <Form.Label>Edit Task</Form.Label>
+                            <Form.Control 
+                                type="text" 
+                                defaultValue={itemToEdit.text} 
+                                onChange={event => setPendingEdit(event.target.value)}/>
+                        </Form.Group>
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant='secondary' onClick={toggle}>
-                            Close
+                            Cancel
                         </Button>
-                        <Button type="submit" variant='primary' onClick={editTask}>
+                        <Button type="submit" variant='success text-white'>
                             Save Changes
+                        </Button>
+                        <Button variant='danger' onClick={() => {removeTask(itemToEdit.key); toggle();}}>
+                            Delete Task
                         </Button>
                     </Modal.Footer>
                 </Form>

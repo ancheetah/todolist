@@ -15,7 +15,7 @@ const ToDoItems = (props) => {
                                         </Col>
                                         <Col xs={2} className="px-2 d-flex justify-content-end">
                                             <Button type="button" variant="primary text-white" className="item-button">
-                                                <i className="fa fa-lg fa-pencil" onClick={() => props.handleEdit(item.key)}></i>
+                                                <i className="fa fa-lg fa-pencil" onClick={() => props.handleEdit(item)}></i>
                                             </Button>
                                             <Button type="button" variant="primary text-white" className="item-button">
                                                 <i className="fa fa-lg fa-times" onClick={ () => props.delete(item.key)}></i>
