@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import ToDoForm from './ToDoFormComponent';
 import ToDoItems from './ToDoItemsComponent';
 // import TaskModal from './TaskModalComponent';
@@ -33,7 +33,7 @@ function Main() {
     // Modal
     const [show, setShow] = useState(false);
     const [itemToEdit, setItemToEdit] = useState({text: "", key: null});
-    const [pendingEdit, setPendingEdit] = useState("");
+    const [pendingEdit, setPendingEdit] = useState(null);
 
     const toggle = () => setShow(!show);
 
@@ -44,14 +44,18 @@ function Main() {
 
     const editTask = (event) => {
         event.preventDefault();
-        setTasks(
-            tasks.map( task => {
-                if (task.key === itemToEdit.key) {
-                    return {text: pendingEdit, key: task.key};
-                }
-                return task;
-            })
-        );
+        if (pendingEdit) {
+            setTasks(
+                tasks.map( task => {
+                    if ((task.key === itemToEdit.key)) {
+                        let newTask = pendingEdit;
+                        setPendingEdit(null);
+                        return {text: newTask, key: task.key};
+                    }
+                    return task;
+                })
+            );
+        }
         toggle();
     }
 
